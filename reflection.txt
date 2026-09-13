@@ -1,0 +1,50 @@
+Python vs C Memory Model
+
+When I write x = 42 in Python, Python does most of
+the memory works automatically. I do not have to declare
+the type of variable, find memory address, or decide
+how much memory the integer needs. Python creates an
+integer object containing 42 and makes x refer to that
+object. In C, I can see more of what is happening
+behind the scenes. For example, when creating
+int my_int = 42, C gives a specific location in 
+memory and I use sizeof() to see how much memory is 
+used. You would also use &my_int to see the memory address.
+One Python feature that makes this difference easy to
+understand is a list. When I create a list in python, it
+automatically manages the memory needed for the list and 
+the objects stored in it. In C, I would think more
+carefully about how much memory I need and whether I am 
+using satck or dynamically allocated heap memory. Python's
+way of managing memory makes it so much easier, but a systems
+programmer needs to understand memory segments because they
+work closer to the hardware. Being able to understand heap,
+stack, and data segment can help with performance, memory usage,
+and finding memory-related problems.
+
+Reflect on Memory Organization
+
+When I ran the program, I noticed that the variables were 
+stored in different memory ranges depending on which part of
+the program they belonged to. The local variables from the stack
+had addresses around 0000003eef9ff..., while the heap variable
+had addresses around 000001a0362c... . The global and static
+variables had addresses around 00007ff7e4cb... .In my output,
+the data segment had the highest addresses, then heap, and
+finally stack had the lowest addresses. The exact addresses
+changed between runs but the varaibles stayed in general
+memory regions. I also noticed that the nested varaible had the
+same address as stack_int. This showed me that stack memory
+can be reused after a function finishes. The previous local
+variable no longer needed that memory, so another local variable 
+could use the same location. I understand the difference between
+automatic and dynamic memory allocation better. Automatic
+allocation happens with local variables  when a function runs.
+The memory is automatically created when the function is called
+and becomes available when the function ends. Dynamic allocation
+happens when I request memory from the heap using malloc(). 
+That memory stays allocated until i release it with free().
+Understanding where variables live also helps explain lifetime
+and scope. Local varaibles are limited to their functions, while
+global and static variables can exist for the entire program.
+Heap memory is contolled by the programmer and sets it free.
