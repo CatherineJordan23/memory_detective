@@ -23,7 +23,10 @@ void investigate_data_types() {
     // - float called 'my_float' with value 3.14
     // - double called 'my_double' with value 2.71828
     // - char called 'my_char' with value 'C'
-    
+   int my_int = 42;
+   float my_float = 3.14;
+   double my_double = 2.71828;
+   char my_char = 'C';
     
     
     
@@ -37,9 +40,17 @@ void investigate_data_types() {
     // printf("int: value = %d, address = %p, size = %zu bytes\n", 
     //        my_int, (void*)&my_int, sizeof(my_int));
     
+    printf("int: value = %d, address = %p, size = %zu bytes\n", 
+        my_int, (void*)&my_int, sizeof(my_int));
     
+    printf("float: value = %.2f, address = %p, size = %zu bytes\n", 
+        my_float, (void*)&my_float, sizeof(my_float));
     
-    
+    printf("double: value = %.5f, address = %p, size = %zu bytes\n", 
+        my_double, (void*)&my_double, sizeof(my_double));
+
+    printf("char: value = %.c, address = %p, size = %zu bytes\n", 
+        my_char, (void*)&my_char, sizeof(my_char));
 }
 
 // =============================================================================
@@ -54,26 +65,39 @@ void investigate_stack() {
     // - A float called 'stack_float' with value 3.14
     // - A char called 'stack_char' with value 'A'
     
+    int stack_int = 42;
+    float stack_float = 3.14;
+    char stack_char = 'A';
     
     
     
     printf("\n=== STACK ALLOCATION ===\n");
+
     // TODO: Print the address and value of each stack variable
     // Use format specifier %p for addresses and appropriate specifiers for values
     // Example: printf("stack_int: address = %p, value = %d\n", (void*)&stack_int, stack_int);
     
-    
-    
+    printf("stack_int: address = %p, value = %d\n",
+        (void*)&stack_int, stack_int);
+
+    printf("stack_float: address = %p, value = %.2f\n",
+        (void*)&stack_float, stack_float);
+
+    printf("stack_char: address = %p, value = %c\n",
+        (void*)&stack_char, stack_char);
 }
 
 void nested_function_call() {
     // TODO: Declare a local integer called 'nested_var' with value 999
     
+    int nested_var = 999;
     
     printf("\n=== NESTED FUNCTION STACK ===\n");
     // TODO: Print the address and value of nested_var
     // Observe: Is this address higher or lower than variables in investigate_stack()?
     
+    printf("nested_var: address = %p, value = %d\n",
+        (void*)&nested_var, nested_var);
 }
 
 // =============================================================================
