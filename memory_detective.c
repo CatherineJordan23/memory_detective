@@ -109,9 +109,11 @@ void nested_function_call() {
 
 // TODO: Declare a global integer variable called 'global_counter' and initialize it to 100
 
+int global_counter = 100;
 
 // TODO: Declare a static integer variable called 'static_value' and initialize it to 200
 
+static int static_value = 200;
 
 void investigate_data_segment() {
     printf("\n=== DATA SEGMENT (Global and Static Variables) ===\n");
@@ -120,7 +122,11 @@ void investigate_data_segment() {
     // Example: printf("global_counter: address = %p, value = %d\n", 
     //                 (void*)&global_counter, global_counter);
     
-    
+    printf("global_counter: address = %p, value = %d\n",
+        (void*)&global_counter, global_counter);
+
+    printf("static_value: address = %p, value = %d\n",
+        (void*)&static_value, static_value);
 }
 
 
@@ -137,6 +143,7 @@ void investigate_heap() {
     // Store the returned pointer in a variable called 'heap_int'
     // Hint: int *heap_int = (int*)malloc(sizeof(int));
     
+    int *heap_int = (int*)malloc(sizeof(int));
     
     // TODO: Check if malloc succeeded (heap_int should not be NULL)
     // If successful:
@@ -147,7 +154,14 @@ void investigate_heap() {
     // Example: printf("heap_int: address = %p, value = %d, size = %zu bytes\n",
     //                 (void*)heap_int, *heap_int, sizeof(int));
     
-    
+    if (heap_int != NULL) {
+        *heap_int = 777;
+
+        printf("heap_int: address = %p, value = %d, size = %zu bytes\n",
+            (void*)heap_int, *heap_int, sizeof(int));
+
+        
+    }
     
     
     
@@ -155,7 +169,8 @@ void investigate_heap() {
     // Note: After free(), the pointer still holds the address, but the memory
     // is no longer yours to use (we'll explore this more in Unit 3)
     
-}
+    free(heap_int);
+}   
 
 // =============================================================================
 // MAIN FUNCTION
